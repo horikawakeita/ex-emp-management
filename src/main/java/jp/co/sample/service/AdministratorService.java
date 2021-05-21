@@ -17,10 +17,10 @@ import jp.co.sample.repository.AdministratorRepository;
 @Transactional
 public class AdministratorService {
 
-	/**リポジトリ*/
+	/** リポジトリ */
 	@Autowired
 	private AdministratorRepository administratorRepository;
-	
+
 	/**
 	 * 管理者情報を挿入するメソッド.
 	 * 
@@ -29,12 +29,12 @@ public class AdministratorService {
 	public void insert(Administrator administrator) {
 		administratorRepository.insert(administrator);
 	}
-	
+
 	/**
 	 * ログイン処理を行うメソッド.
 	 * 
 	 * @param mailAddress メールアドレス
-	 * @param password パスワード
+	 * @param password    パスワード
 	 * @return メールアドレスとパスワードが一致した管理者の情報
 	 */
 	public Administrator login(String mailAddress, String password) {
