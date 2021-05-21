@@ -8,7 +8,8 @@ import jp.co.sample.domain.Administrator;
 import jp.co.sample.repository.AdministratorRepository;
 
 /**
- * 管理者関連機能の業務処理を行うサービス
+ * 管理者関連機能の業務処理を行うサービス.
+ * 
  * @author keita.horikawa
  *
  */
@@ -23,7 +24,7 @@ public class AdministratorService {
 	/**
 	 * 管理者情報を挿入するメソッド.
 	 * 
-	 * @param administrator
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		administratorRepository.insert(administrator);
