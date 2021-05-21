@@ -3,48 +3,49 @@ package jp.co.sample.domain;
 import java.util.Date;
 
 /**
- * 従業員情報を表すドメイン
+ * 従業員情報を表すドメイン.
+ * 
  * @author keita.horikawa
  *
  */
 public class Employee {
 
-	/**ID*/
+	/** ID */
 	private Integer id;
-	
-	/**名前*/
+
+	/** 名前 */
 	private String name;
-	
-	/**画像*/
+
+	/** 画像 */
 	private String image;
-	
-	/**性別*/
+
+	/** 性別 */
 	private String gender;
-	
-	/**入社日*/
+
+	/** 入社日 */
 	private Date hireDate;
-	
-	/**メールアドレス*/
+
+	/** メールアドレス */
 	private String mailAddress;
-	
-	/**郵便番号*/
+
+	/** 郵便番号 */
 	private String zipCode;
-	
-	/**住所*/
+
+	/** 住所 */
 	private String address;
-	
-	/**電話番号*/
+
+	/** 電話番号 */
 	private String telephone;
-	
-	/**給料*/
+
+	/** 給料 */
 	private Integer salary;
-	
-	/**特性*/
+
+	/** 特性 */
 	private String characteristics;
-	
-	/**不要人数*/
+
+	/** 不要人数 */
 	private Integer dependentsCount;
-	
+
 	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
 			String zipCode, String address, String telephone, Integer salary, String characteristics,
 			Integer dependentsCount) {
@@ -62,7 +63,7 @@ public class Employee {
 		this.characteristics = characteristics;
 		this.dependentsCount = dependentsCount;
 	}
-	
+
 	public Employee() {
 	}
 
@@ -169,7 +170,5 @@ public class Employee {
 				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
 				+ ", dependentsCount=" + dependentsCount + "]";
 	}
-	
-	
-	
+
 }

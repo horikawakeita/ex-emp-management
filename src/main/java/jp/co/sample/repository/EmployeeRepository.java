@@ -14,61 +14,67 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
- * employeesテーブルを操作するリポジトリ
+ * employeesテーブルを操作するリポジトリ.
+ * 
  * @author keita.horikawa
  *
  */
 @Repository
 public class EmployeeRepository {
-	
-	/**employeeオブジェクトを生成するRowMapper*/
+
+	/** employeeオブジェクトを生成するRowMapper */
 	private static final RowMapper<Employee> EMPLOYEE_ROW_MAPPER = new BeanPropertyRowMapper<>(Employee.class);
 
-	/**テンプレート*/
+	/** テンプレート */
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	/**
-	 * 従業員情報を変更するメソッド
+	 * 従業員情報を変更するメソッド.
+	 * 
 	 * @param employee 変更する従業員の情報
 	 */
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
-		
+
 		String sql = "UPDATE employees SET name=:name,image=:image,gender=:gender,"
 				+ "hire_date=:hireDate,mail_address=:mailAddress,zip_code=:zipCode,address=:address,"
 				+ "telephone=:telephone,salary=:salary,characteristics=:characteristics,"
-				+ "dependents_count=:dependentsCount"
-				+ "WHERE id=:id";
-		
+				+ "dependents_count=:dependentsCount" + "WHERE id=:id";
+
 		template.update(sql, param);
 	}
-	
+
 	/**
-	 * 主キーから従業員情報を取得するメソッド
+	 * 主キーから従業員情報を取得するメソッド.
+	 * 
 	 * @param id id
 	 * @return 取得した従業員情報
 	 */
 	public Employee load(Integer id) {
-		String sql = "SELECT * FROM employees WHERE id=:id";
-		
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,"
+				+ "salary,characteristics,dependents_count "
+				+ "FROM employees WHERE id=:id";
+
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
-		
+
 		return employee;
 	}
 
 	/**
-	 * 従業員一覧を入社日順で取得するメソッド
-	 * 従業員が存在しない場合は空のリストを返す
-	 * @return 取得した従業員のリスト
+	 * 従業員一覧を入社日順で取得するメソッド. 
+	 * 
+	 * @return 取得した従業員のリスト(従業員が存在しない場合は空のリストを返す)
 	 */
 	public List<Employee> findAll() {
-		String sql = "SELECT * FROM employees ORDER BY hire_date DESC";
-		
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,"
+				+ "salary,characteristics,dependents_count "
+				+ "FROM employees ORDER BY hire_date DESC";
+
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-		
+
 		return employeeList;
 	}
 
