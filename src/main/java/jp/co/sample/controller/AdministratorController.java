@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -25,13 +26,23 @@ public class AdministratorController {
 	private AdministratorService administratorService;
 	
 	/**
-	 * フォームオブジェクトをrequestスコープに格納.
+	 * 管理者登録フォームオブジェクトをrequestスコープに格納.
 	 * 
 	 * @return InsertAdministratorFormのオブジェクト
 	 */
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
+	}
+	
+	/**
+	 * ログインフォームオブジェクトをrequestスコープに格納.
+	 * 
+	 * @return LoginFormのオブジェクト
+	 */
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
 	}
 	
 	/**
@@ -42,6 +53,16 @@ public class AdministratorController {
 	@RequestMapping("/toInsert")
 	public String toInsert() {
 		return "administrator/insert";
+	}
+	
+	/**
+	 * administrator/login.htmlへフォワード.
+	 * 
+	 * @return administrator/login.htmlへのパス
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
 	}
 	
 	/**
@@ -58,4 +79,6 @@ public class AdministratorController {
 		
 		return "redirect:/";
 	}
+	
+	
 }
