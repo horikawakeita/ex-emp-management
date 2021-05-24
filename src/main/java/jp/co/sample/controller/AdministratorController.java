@@ -87,6 +87,13 @@ public class AdministratorController {
 		return "redirect:/";
 	}
 	
+	/**
+	 * ログイン処理を行うメソッド.
+	 * 
+	 * @param form ログインフォームに入力された情報
+	 * @param model requestスコープに格納するための変数
+	 * @return employeeControllerのshowListメソッドへフォワード
+	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
 		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
