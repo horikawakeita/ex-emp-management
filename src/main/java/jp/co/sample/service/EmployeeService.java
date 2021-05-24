@@ -24,11 +24,21 @@ public class EmployeeService {
 	private EmployeeRepository employeeRepository;
 	
 	/**
-	 * 従業員情報を全件取得すメソッド.
+	 * 従業員情報を全件取得するメソッド.
 	 * 
 	 * @return 取得した従業員情報のリスト
 	 */
 	public List<Employee> showList(){
 		return employeeRepository.findAll();
+	}
+	
+	/**
+	 * 従業員情報を取得するメソッド.
+	 * 
+	 * @param id 呼び出す従業員のID
+	 * @return 取得できた従業員の情報
+	 */
+	public Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
 	}
 }

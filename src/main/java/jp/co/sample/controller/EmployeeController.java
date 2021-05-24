@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
+import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.EmployeeService;
 
 /**
@@ -24,11 +25,42 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
+	/**
+	 * UpdateEmployeeFormオブジェクトをrequestスコープに格納.
+	 * 
+	 * @return UpdateEmployeeFormオブジェクト
+	 */
+	@Autowired
+	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
+		return new UpdateEmployeeForm();
+	}
+	
+	/**
+	 * 従業員を全員取得し従業員一覧へフォワード.
+	 * 
+	 * @param model requestスコープに格納するためのオブジェクト
+	 * @return 従業員一覧
+	 */
 	@RequestMapping("/showList")
 	public String showList(Model model) {
 		List<Employee> employeeList = employeeService.showList();
 		model.addAttribute("employeeList", employeeList);
 		
 		return "employee/list";
+	}
+	
+	/**
+	 * 検索した従業員情報をrequestスコープに格納し、従業員詳細情報へフォワード.
+	 * 
+	 * @param id 検索する従業員のID
+	 * @param model requestスコープに格納するためのオブジェクト
+	 * @return 従業員詳細画面
+	 */
+	@RequestMapping("/showDetail")
+	public String showDetail(String id, Model model) {
+		Employee employee = employeeService.showDetail(Integer.parseInt(id));
+		model.addAttribute("employee", employee);
+		
+		return "employee/detail";
 	}
 }
