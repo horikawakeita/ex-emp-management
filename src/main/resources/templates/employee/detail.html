@@ -82,8 +82,7 @@
 							      写真
 							    </th>
 							    <td>
-							      <img th:if="${employee.gender.equals('男性')}" th:src="@{/img/e1.png}" src="../../static/img/e1.png">
-							      <img th:if="${employee.gender.equals('女性')}" th:src="@{/img/e2.png}" src="../../static/img/e2.png">
+							      <img th:src="@{'/img/' + ${employee.image}}" src="../../static/img/e2.png">
 							    </td>
 							  </tr>
 							  <tr>
