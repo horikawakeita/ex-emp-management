@@ -68,7 +68,7 @@ public class EmployeeController {
 	 * 従業員詳細情報を更新(ここでは扶養人数のみ)するメソッド.
 	 * 
 	 * @param form 更新する従業員情報
-	 * @return employeeContorollerのshowListメソッドへリダイレクト
+	 * @return 従業員一覧へリダイレクト
 	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
